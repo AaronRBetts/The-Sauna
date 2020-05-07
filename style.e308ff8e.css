@@ -1,0 +1,81 @@
+html, body {
+    height: 100%;
+}
+
+.tab-content, .tab-pane {
+    min-height: 100%;
+    margin-top: 10px;
+}
+
+/* Weather */
+
+.weather-wrap {
+    width: 400px;
+    margin: auto;
+    text-align: center;
+}
+
+/* Reddit */
+
+.form-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+#results img {
+    max-width: 400px;
+    max-height: 400px;
+}
+
+img.bg {
+    position: fixed;
+    bottom: 0px;
+    width: 100vw;
+    z-index: -1;
+    opacity: 0.5;
+}
+
+#submit-button {
+    width: 20%;
+}
+
+#search-input{
+    width: 70%;
+}
+
+/* Responsive */
+
+@media (min-width: 34em) {
+    .card-columns {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+    }
+}
+
+@media (min-width: 48em) {
+    .card-columns {
+        -webkit-column-count: 3;
+        -moz-column-count: 3;
+        column-count: 3;
+    }
+}
+
+@media (min-width: 62em) {
+    .card-columns {
+        -webkit-column-count: 4;
+        -moz-column-count: 4;
+        column-count: 4;
+    }
+}
+
+@media (min-width: 75em) {
+    .card-columns {
+        -webkit-column-count: 5;
+        -moz-column-count: 5;
+        column-count: 5;
+    }
+}
+
+/*# sourceMappingURL=/style.e308ff8e.css.map */
