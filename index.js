@@ -1,8 +1,8 @@
+require('dotenv').config()
 import reddit from "./redditapi";
 
 const searchForm = document.getElementById("search-form");
 const searchInput = document.getElementById("search-input");
-
 
 searchReddit("", 25, "hottest");
 
