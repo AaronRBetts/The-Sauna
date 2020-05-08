@@ -119,7 +119,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   return newRequire;
 })({"weather.js":[function(require,module,exports) {
 var api = {
-  key: "72371ebe4086e9065e1957ecd1c20a9e",
+  key: WEATHER_API_KEY,
   base: "https://api.openweathermap.org/data/2.5/"
 };
 getResults("helsinki");
