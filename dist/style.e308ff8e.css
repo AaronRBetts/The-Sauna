@@ -4,7 +4,12 @@ html, body {
 
 .tab-content, .tab-pane {
     min-height: 100%;
-    margin-top: 10px;
+    padding-top: 10px;
+}
+
+.tab-content {
+    background: url("https://source.unsplash.com/1920x1080/?finland") no-repeat center;
+    background-size: cover;
 }
 
 /* Weather */
@@ -26,14 +31,6 @@ html, body {
 #results img {
     max-width: 400px;
     max-height: 400px;
-}
-
-img.bg {
-    position: fixed;
-    bottom: 0px;
-    width: 100vw;
-    z-index: -1;
-    opacity: 0.5;
 }
 
 #submit-button {

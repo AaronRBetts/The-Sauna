@@ -1,11 +1,14 @@
 {
-  "name": "myinterests",
+  "name": "thesauna",
   "version": "1.0.0",
-  "description": "Reddit search app",
+  "description": "Finland social feed",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Aaron Betts",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^8.2.0"
+  }
 }

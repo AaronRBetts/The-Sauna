@@ -1,7 +1,7 @@
 const api = {
-    key: config.WEATHER_API_KEY,
-    base: "https://api.openweathermap.org/data/2.5/"
-  }
+  key: process.env.WEATHER_API_KEY,
+  base: "https://api.openweathermap.org/data/2.5/"
+}
   
   getResults("helsinki");
 

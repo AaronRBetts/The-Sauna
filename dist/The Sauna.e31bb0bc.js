@@ -117,79 +117,119 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
+})({"redditapi.js":[function(require,module,exports) {
+"use strict";
 
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
-
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  search: function search(searchTerm, searchLimit, sortBy) {
+    if (searchTerm) {
+      searchTerm = "search.json?q=".concat(searchTerm);
+    } else {
+      searchTerm = "hot.json?";
     }
+
+    if (sortBy) {
+      sortBy = "&sort=".concat(sortBy);
+    } else {
+      sortBy = "";
+    }
+
+    if (searchLimit) {
+      searchLimit = "&limit=".concat(searchLimit);
+    }
+
+    return fetch("http://www.reddit.com/r/finland/".concat(searchTerm).concat(sortBy).concat(searchLimit, "&restrict_sr=on")).then(function (res) {
+      return res.json();
+    }).then(function (data) {
+      return data.data.children.map(function (data) {
+        return data.data;
+      });
+    }).catch(function (err) {
+      return console.log(err);
+    });
   }
+};
+exports.default = _default;
+},{}],"index.js":[function(require,module,exports) {
+"use strict";
 
-  return '/';
-}
+var _redditapi = _interopRequireDefault(require("./redditapi"));
 
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
+var searchForm = document.getElementById("search-form");
+var searchInput = document.getElementById("search-input");
+searchReddit("", 25, "hottest");
+searchForm.addEventListener('submit', function (e) {
+  e.preventDefault(); //Get the search term
 
-function updateLink(link) {
-  var newLink = link.cloneNode();
+  var searchTerm = searchInput.value;
+  var sortBy = document.querySelector('input[name="sortby"]:checked').value; // if (searchTerm === "") {
+  //     showMessage('Please add a search term', 'alert-danger');
+  // }
+  //Clear input
 
-  newLink.onload = function () {
-    link.remove();
-  };
+  searchReddit("", 25, "");
+  searchInput.value = "";
+});
 
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
+function searchReddit(searchTerm, searchLimit, sortBy) {
+  // Search Reddit
+  _redditapi.default.search(searchTerm, searchLimit, sortBy).then(function (results) {
+    var output = '<div class="card-columns">';
+    results.forEach(function (post) {
+      if (post.domain == "self.Finland") post.domain = "reddit.com/r/finland"; //Check for image
 
-var cssTimeout = null;
+      var image = "";
 
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
+      if (post.preview) {
+        image = "<a href=\"".concat(post.url, "\" target=\"_blank\"><img src=\"").concat(post.preview.images[0].source.url, "\" class=\"card-img-top img-fluid\" alt=\"article image\"></a>");
       }
-    }
 
-    cssTimeout = null;
-  }, 50);
+      var a = new Date(post.created_utc * 1000);
+      var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      var year = a.getFullYear();
+      var month = months[a.getMonth()];
+      var date = a.getDate();
+      var hour = a.getHours();
+      var min = a.getMinutes();
+      var sec = a.getSeconds();
+      var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec; //Produce card with info
+
+      output += "\n            <div class=\"card text-white bg-dark\">\n                <div class=\"card-body\">\n                    ".concat(image, "\n                    <h5 class=\"card-header\">").concat(post.title, "</h5>\n                    <span class=\"badge badge-secondary\">Posted: ").concat(time, "</span>\n                    <hr>\n                    <p class=\"card-text\">").concat(truncateText(post.selftext, 100), "</p>\n                    <a href=\"").concat(post.url, "\" target=\"_blank\" class=\"btn btn-primary\">Read more</a>\n                    <span class=\"badge badge-secondary\">Article origin: ").concat(post.domain, "</span>\n                </div>\n            </div>\n            ");
+    });
+    output += '</div>';
+    document.getElementById('results').innerHTML = output;
+  });
 }
 
-module.exports = reloadCSS;
-},{"./bundle-url":"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"style.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
+function showMessage(message, className) {
+  //create message div
+  var div = document.createElement('div');
+  div.className = "alert ".concat(className);
+  div.appendChild(document.createTextNode(message)); //get parent (search container)
 
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+  var searchContainer = document.getElementById("search-container");
+  var search = document.getElementById("search"); //insert a message to the parent
+
+  searchContainer.insertBefore(div, search); //Timeout alert
+
+  setTimeout(function () {
+    return document.querySelector(".alert").remove();
+  }, 3000);
+} //Truncate text
+
+
+function truncateText(text, limit) {
+  var shortened = text.indexOf(' ', limit);
+  if (shortened == -1) return text;
+  return text.substring(0, shortened);
+}
+},{"./redditapi":"redditapi.js"}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -393,5 +433,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
-//# sourceMappingURL=/style.e308ff8e.js.map
+},{}]},{},["../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
+//# sourceMappingURL=/The%20Sauna.e31bb0bc.js.map
