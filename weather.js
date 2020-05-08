@@ -1,8 +1,4 @@
-const api = {
-  key: process.env.WEATHER_API_KEY,
-  base: "https://api.openweathermap.org/data/2.5/"
-}
-  
+
   getResults("helsinki");
 
   const searchbox = document.querySelector('.weather-search-box');
@@ -16,7 +12,7 @@ const api = {
   }
   
   function getResults (query) {
-    fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${query}&units=metric&APPID=${process.env.WEATHER_API_KEY}`)
       .then(weather => {
         return weather.json();
       }).then(displayResults);

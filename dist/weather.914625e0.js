@@ -118,10 +118,6 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"weather.js":[function(require,module,exports) {
-var api = {
-  key: "72371ebe4086e9065e1957ecd1c20a9e",
-  base: "https://api.openweathermap.org/data/2.5/"
-};
 getResults("helsinki");
 var searchbox = document.querySelector('.weather-search-box');
 searchbox.addEventListener('keypress', setQuery);
@@ -134,7 +130,7 @@ function setQuery(evt) {
 }
 
 function getResults(query) {
-  fetch("".concat(api.base, "weather?q=").concat(query, "&units=metric&APPID=").concat(api.key)).then(function (weather) {
+  fetch("https://api.openweathermap.org/data/2.5/weather?q=".concat(query, "&units=metric&APPID=").concat("72371ebe4086e9065e1957ecd1c20a9e")).then(function (weather) {
     return weather.json();
   }).then(displayResults);
 }
