@@ -5,7 +5,7 @@
 
 Live version:
 
-Aaronrbetts.github.io/The-Sauna
+https://aaronrbetts.github.io/The-Sauna/
 
 ## local hosting instructions
 1. You will need your own API key from https://home.openweathermap.org/
