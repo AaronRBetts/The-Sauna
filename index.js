@@ -1,4 +1,3 @@
-require('dotenv').config();
 import reddit from "./redditapi";
 
 const searchForm = document.getElementById("search-form");
