@@ -142,7 +142,7 @@ var _default = {
       searchLimit = "&limit=".concat(searchLimit);
     }
 
-    return fetch("http://www.reddit.com/r/finland/".concat(searchTerm).concat(sortBy).concat(searchLimit, "&restrict_sr=on")).then(function (res) {
+    return fetch("https://www.reddit.com/r/finland/".concat(searchTerm).concat(sortBy).concat(searchLimit, "&restrict_sr=on")).then(function (res) {
       return res.json();
     }).then(function (data) {
       return data.data.children.map(function (data) {
@@ -257,7 +257,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56528" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56930" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
