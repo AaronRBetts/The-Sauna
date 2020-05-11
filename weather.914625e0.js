@@ -118,7 +118,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"weather.js":[function(require,module,exports) {
-getResults("helsinki");
+getResults("tampere");
 var searchbox = document.querySelector('.weather-search-box');
 searchbox.addEventListener('keypress', setQuery);
 
@@ -186,7 +186,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57278" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49294" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -363,4 +363,4 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","weather.js"], null)
-//# sourceMappingURL=weather.914625e0.js.map
+//# sourceMappingURL=/weather.914625e0.js.map
