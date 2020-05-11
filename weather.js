@@ -1,5 +1,5 @@
 
-  getResults("helsinki");
+  getResults("tampere");
 
   const searchbox = document.querySelector('.weather-search-box');
   searchbox.addEventListener('keypress', setQuery);
