@@ -1,59 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The Sauna</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <nav id="myTab" role="tablist">
-        <menu style="padding-inline-start: 0px; padding-inline-end: 20px;">
-            <ul class="nav nav-tabs" style="display: inherit; border: none;">
-                <li class="nav-item" style="border: none;">
-                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="reddit-tab" data-toggle="tab" href="#reddit" role="tab" aria-controls="reddit" aria-selected="false">Reddit</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="insta-tab" data-toggle="tab" href="#instagram" role="tab" aria-controls="profile" aria-selected="false">Instagram</a>
-                </li>
-            </ul>
-        </menu>
+      <menu style="padding-inline-start: 0px; padding-inline-end: 20px;">
+        <ul class="nav nav-tabs" style="display: inherit; border: none;">
+          <li class="nav-item" style="border: none;">
+            <a
+              class="nav-link active"
+              id="home-tab"
+              data-toggle="tab"
+              href="#home"
+              role="tab"
+              aria-controls="home"
+              aria-selected="true"
+              >Home</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              id="reddit-tab"
+              data-toggle="tab"
+              href="#reddit"
+              role="tab"
+              aria-controls="reddit"
+              aria-selected="false"
+              >Reddit</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              id="insta-tab"
+              data-toggle="tab"
+              href="#instagram"
+              role="tab"
+              aria-controls="profile"
+              aria-selected="false"
+              >Instagram</a
+            >
+          </li>
+        </ul>
+      </menu>
     </nav>
-  
-  <!-- Tab panes -->
-    <div class="tab-content">
-        <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-            <!-- DASHBOARD TAB -->
+    <!-- Tab panes -->
+    <div class="tab-content" id="main">
+      <div
+        class="tab-pane active"
+        id="home"
+        role="tabpanel"
+        aria-labelledby="home-tab"
+      >
+        <!-- DASHBOARD TAB -->
 
-            <div id="mainHeading">
-                <h1 class="display-1">The Sauna</h1>
-                <p class="lead">Hangout for English speakers living in Finland</p>
+        <div id="mainHeading">
+          <h1 class="display-1">The Sauna</h1>
+          <p class="lead">Hangout for English speakers living in Finland</p>
+        </div>
+
+        <div class="weather-wrap">
+          <div class="card text-white bg-dark">
+            <div class="card-body">
+              <div class="card-header">
+                <h1>Current Weather</h1>
+                <input
+                  type="text"
+                  autocomplete="off"
+                  class="weather-search-box text-center form-control"
+                  placeholder="Enter a city"
+                />
+              </div>
+              <div class="card-body location">
+                <div class="city">city</div>
+                <div class="date">date</div>
+              </div>
+              <div class="current">
+                <div class="temp">temp<span>°c</span></div>
+                <div class="weather">weather</div>
+                <div class="hi-low">high°c / low°c</div>
+              </div>
             </div>
-
-            <div class="weather-wrap">
-                <div class="card text-white bg-dark">
-                    <div class="card-body">
-                        <div class="card-header">
-                            <h1>Current Weather</h1>
-                            <input type="text" autocomplete="off" class="weather-search-box text-center form-control" placeholder="Enter a city" />
-                        </div>
-                        <div class="card-body location">
-                            <div class="city">city</div>
-                            <div class="date">date</div>
-                        </div>
-                        <div class="current">
-                            <div class="temp">temp<span>°c</span></div>
-                            <div class="weather">weather</div>
-                            <div class="hi-low">high°c / low°c</div>
-                        </div>
-                    </div>
-                </div>
-                <!-- <div class="covid-wrap">
+          </div>
+          <!-- <div class="covid-wrap">
                     <div class="card text-white bg-dark">
                         <div class="card-body">
                             <h1>Covid 19 Data in Finland</h1>
@@ -61,42 +102,73 @@
                         </div>
                     </div>
                 </div> -->
-            </div>
         </div>
+        <button class="btn btn-dark" id="loadBG">
+          New Background
+        </button>
+      </div>
 
-        <!-- REDDIT TAB -->
+      <!-- REDDIT TAB -->
 
-        <div class="tab-pane fade" id="reddit" role="tabpanel" aria-labelledby="reddit-tab">
-            
-            <div id="search-container" class="container-fluid">
-                <div id="search" class="card card-body bg-light mb-2">
-                    <h4 class="text-center">Filter posts</h4>
-                    <form id="search-form">
-                        <div class="form-group">
-                            <input type="text" id="search-input" class="form-control m-3 text-center" placeholder="Search Term...">
-                            <button type="submit" id="submit-button" class="btn btn-dark m-4">Search</button>
-                        </div>
-                        <div class="form-check form-check-inline"><h5>Sort By:</h5>
-                            <input class="form-check-input ml-2" type="radio" name="sortby" value="relevance" checked>
-                            <label class="form-check-label"><h6>Relevance</h6></label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="sortby" value="new">
-                            <label class="form-check-label"><h6>Latest</h6></label>
-                        </div>
-                    </form>
-                </div>
-                <div id="results"></div>
-            </div>
+      <div
+        class="tab-pane fade"
+        id="reddit"
+        role="tabpanel"
+        aria-labelledby="reddit-tab"
+      >
+        <div id="search-container" class="container-fluid">
+          <div id="search" class="card card-body bg-light mb-2">
+            <h4 class="text-center">Filter posts</h4>
+            <form id="search-form">
+              <div class="form-group">
+                <input
+                  type="text"
+                  id="search-input"
+                  class="form-control m-3 text-center"
+                  placeholder="Search Term..."
+                />
+                <button
+                  type="submit"
+                  id="submit-button"
+                  class="btn btn-dark m-4"
+                >
+                  Search
+                </button>
+              </div>
+              <div class="form-check form-check-inline">
+                <h5>Sort By:</h5>
+                <input
+                  class="form-check-input ml-2"
+                  type="radio"
+                  name="sortby"
+                  value="relevance"
+                  checked
+                />
+                <label class="form-check-label"><h6>Relevance</h6></label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="sortby"
+                  value="new"
+                />
+                <label class="form-check-label"><h6>Latest</h6></label>
+              </div>
+            </form>
+          </div>
+          <div id="results"></div>
         </div>
+      </div>
 
-        <!-- INSTAGRAM TAB -->
+      <!-- INSTAGRAM TAB -->
 
-        <div class="tab-pane fade" id="instagram" role="tabpanel" aria-labelledby="instagram-tab">
-            
-            <h1 class="display-1">INSTAGRAM FEED COMING SOON</h1>
-
-        </div>
+      <div
+        class="tab-pane fade"
+        id="instagram"
+        role="tabpanel"
+        aria-labelledby="instagram-tab"
+      ></div>
     </div>
 
     <!-- Local imports -->
@@ -106,11 +178,24 @@
     <script src="covidapi.js"></script>
 
     <!-- framework CDN's -->
-
-    <script src="https://kit.fontawesome.com/f932c1be40.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</body>
+    <script
+      src="https://kit.fontawesome.com/f932c1be40.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
-
