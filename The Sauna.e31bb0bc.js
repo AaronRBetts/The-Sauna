@@ -164,7 +164,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var searchForm = document.getElementById("search-form");
 var searchInput = document.getElementById("search-input");
 searchReddit("", 25, "hottest");
-searchForm.addEventListener('submit', function (e) {
+searchForm.addEventListener("submit", function (e) {
   e.preventDefault(); //Get the search term
 
   var searchTerm = searchInput.value;
@@ -173,12 +173,13 @@ searchForm.addEventListener('submit', function (e) {
   // }
   //Clear input
 
-  searchReddit("", 25, "");
+  searchReddit(searchTerm, 25, sortBy);
   searchInput.value = "";
 });
 
 function searchReddit(searchTerm, searchLimit, sortBy) {
-  // Search Reddit
+  console.log("searching ".concat(searchTerm)); // Search Reddit
+
   _redditapi.default.search(searchTerm, searchLimit, sortBy).then(function (results) {
     var output = '<div class="card-columns">';
     results.forEach(function (post) {
@@ -191,25 +192,25 @@ function searchReddit(searchTerm, searchLimit, sortBy) {
       }
 
       var a = new Date(post.created_utc * 1000);
-      var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
       var year = a.getFullYear();
       var month = months[a.getMonth()];
       var date = a.getDate();
       var hour = a.getHours();
       var min = a.getMinutes();
       var sec = a.getSeconds();
-      var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec; //Produce card with info
+      var time = date + " " + month + " " + year + " " + hour + ":" + min + ":" + sec; //Produce card with info
 
       output += "\n            <div class=\"card text-white bg-dark\">\n                <div class=\"card-body\">\n                    ".concat(image, "\n                    <h5 class=\"card-header\">").concat(post.title, "</h5>\n                    <span class=\"badge badge-secondary\">Posted: ").concat(time, "</span>\n                    <hr>\n                    <p class=\"card-text\">").concat(truncateText(post.selftext, 100), "</p>\n                    <a href=\"").concat(post.url, "\" target=\"_blank\" class=\"btn btn-primary\">Read more</a>\n                    <span class=\"badge badge-secondary\">Article origin: ").concat(post.domain, "</span>\n                </div>\n            </div>\n            ");
     });
-    output += '</div>';
-    document.getElementById('results').innerHTML = output;
+    output += "</div>";
+    document.getElementById("results").innerHTML = output;
   });
 }
 
 function showMessage(message, className) {
   //create message div
-  var div = document.createElement('div');
+  var div = document.createElement("div");
   div.className = "alert ".concat(className);
   div.appendChild(document.createTextNode(message)); //get parent (search container)
 
@@ -225,10 +226,15 @@ function showMessage(message, className) {
 
 
 function truncateText(text, limit) {
-  var shortened = text.indexOf(' ', limit);
+  var shortened = text.indexOf(" ", limit);
   if (shortened == -1) return text;
   return text.substring(0, shortened);
 }
+
+document.getElementById("loadBG").onclick = function () {
+  var randomInt = Math.floor(Math.random() * (100 - 1) + 1);
+  document.getElementById("main").style.backgroundImage = "url(https://source.unsplash.com/1920x1080/?finland?sig=".concat(randomInt, ")");
+};
 },{"./redditapi":"redditapi.js"}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -257,7 +263,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63575" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64190" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -434,4 +440,4 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
-//# sourceMappingURL=The%20Sauna.e31bb0bc.js.map
+//# sourceMappingURL=/The%20Sauna.e31bb0bc.js.map
