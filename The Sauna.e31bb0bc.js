@@ -235,7 +235,7 @@ document.getElementById("loadBG").onclick = function () {
   var randomInt = Math.floor(Math.random() * (100 - 1) + 1);
   document.getElementById("main").style.backgroundImage = "url(https://source.unsplash.com/1920x1080/?finland?sig=".concat(randomInt, ")");
 };
-},{"./redditapi":"redditapi.js"}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./redditapi":"redditapi.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -263,7 +263,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64190" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65286" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -439,5 +439,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
 //# sourceMappingURL=/The%20Sauna.e31bb0bc.js.map
